@@ -1,12 +1,13 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This project is to demonstrate having two databases referenced using Entity Framework using the Unit of Work and Repository model.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+
+1. Install .NET Core SDK
+2. Install SQL Server Express
+    2a. localhost\sqlexpress <-- Instance Name
+3. Install Visual Studio or Visual Studio Code
+
 
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 

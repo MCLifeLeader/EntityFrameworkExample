@@ -36,6 +36,11 @@ namespace MultiDatabase.DbOneRepository
          return _context.OneTableOne.Where(filter);
       }
 
+      public IQueryable<DbOneTableOne> GetAsQueryable()
+      {
+         return _context.OneTableOne.AsQueryable();
+      }
+
       public IList<DbOneTableOne> GetEntityByMessageSearch(string message)
       {
          return _context.OneTableOne.Where(e => e.Data.Contains(message)).ToList();

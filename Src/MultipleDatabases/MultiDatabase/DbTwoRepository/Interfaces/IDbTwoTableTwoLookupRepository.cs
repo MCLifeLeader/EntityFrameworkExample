@@ -5,8 +5,8 @@ using MultiDatabase.Repository.Interfaces;
 
 namespace MultiDatabase.DbTwoRepository.Interfaces
 {
-   public interface IDbTwoTableTwoLookupRepository : ILookupRepository<DbTwoTableTwoLookup, short>, IDisposable
-   {
-      new IQueryable<DbTwoTableTwoLookup> GetAsQueryable();
-   }
+    public interface IDbTwoTableTwoLookupRepository : ILookupRepository<DbTwoTableTwoLookup, short>, IDisposable
+    {
+        new IQueryable<DbTwoTableTwoLookup> GetAsQueryable();
+    }
 }

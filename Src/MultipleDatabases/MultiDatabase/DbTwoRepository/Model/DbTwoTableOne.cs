@@ -5,20 +5,21 @@ using MultiDatabase.DbTwoRepository.Model.Enum;
 
 namespace MultiDatabase.DbTwoRepository.Model
 {
-   [Table("DbTwoTableOne")]
-   public class DbTwoTableOne
-   {
-      [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-      public int Id { get; set; }
+    [Table("DbTwoTableOne")]
+    public class DbTwoTableOne
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-      [Required] 
-      public short DbTwoTableTwoLookupId { get; set; }
+        [Required]
+        // ReSharper disable once InconsistentNaming
+        public short DbTwoTableTwoLookupId { get; set; }
 
-      [Required]
-      [StringLength(100)]
-      public string Data { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Data { get; set; }
 
-      [Required]
-      public DateTime DateCreated { get; set; }
-   }
+        [Required]
+        public DateTime DateCreated { get; set; }
+    }
 }

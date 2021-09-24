@@ -7,131 +7,131 @@ using MultiDatabase.DbTwoRepository.Interfaces;
 
 namespace MultiDatabase.DbTwoRepository
 {
-   public class DbTwoContext : DbTwoContainer, IDbTwoUnitOfWork
-   {
-      public DbTwoContext(DbContextOptions dbContextOptions)
-         : base(dbContextOptions)
-      { }
+    public class DbTwoContext : DbTwoContainer, IDbTwoUnitOfWork
+    {
+        public DbTwoContext(DbContextOptions dbContextOptions)
+           : base(dbContextOptions)
+        { }
 
-      public DbTwoContext(DbContextOptions<DbTwoContainer> dbContextOptions)
-         : base(dbContextOptions)
-      { }
+        public DbTwoContext(DbContextOptions<DbTwoContainer> dbContextOptions)
+           : base(dbContextOptions)
+        { }
 
-      public DbTwoContext(string connectionString)
-         : base(GetOptions(connectionString))
-      { }
+        public DbTwoContext(string connectionString)
+           : base(GetOptions(connectionString))
+        { }
 
-      #region Public Methods
-      public override int SaveChanges()
-      {
-         IEnumerable<object> entities = from e in ChangeTracker.Entries()
-                                        where e.State == EntityState.Added
-                                              || e.State == EntityState.Modified
-                                        select e.Entity;
+        #region Public Methods
+        public override int SaveChanges()
+        {
+            IEnumerable<object> entities = from e in ChangeTracker.Entries()
+                                           where e.State == EntityState.Added
+                                                 || e.State == EntityState.Modified
+                                           select e.Entity;
 
-         foreach (object entity in entities)
-         {
-            ValidationContext validationContext = new ValidationContext(entity);
-            Validator.ValidateObject(entity, validationContext);
-         }
+            foreach (object entity in entities)
+            {
+                ValidationContext validationContext = new ValidationContext(entity);
+                Validator.ValidateObject(entity, validationContext);
+            }
 
-         return base.SaveChanges();
-      }
+            return base.SaveChanges();
+        }
 
-      /// <summary>
-      /// Saves this instance.
-      /// </summary>
-      public void Save()
-      {
-         //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
+        /// <summary>
+        /// Saves this instance.
+        /// </summary>
+        public void Save()
+        {
+            //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
 
-         try
-         {
-            SaveChanges();
-         }
-         catch (Exception ex)
-         {
-            //_logger.Fatal(ex.Message, ex);
+            try
+            {
+                SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                //_logger.Fatal(ex.Message, ex);
 
-            throw;
-         }
-      }
+                throw;
+            }
+        }
 
-      /// <summary>
-      /// Reloads the specified entity.
-      /// </summary>
-      /// <typeparam name="TEntity">The type of the entity.</typeparam>
-      /// <param name="entity">The entity.</param>
-      public void Reload<TEntity>(TEntity entity) where TEntity : class
-      {
-         //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
+        /// <summary>
+        /// Reloads the specified entity.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="entity">The entity.</param>
+        public void Reload<TEntity>(TEntity entity) where TEntity : class
+        {
+            //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
 
-         try
-         {
-            Entry(entity).Reload();
-         }
-         catch (Exception ex)
-         {
-            //_logger.Debug(ex);
-         }
-      }
+            try
+            {
+                Entry(entity).Reload();
+            }
+            catch (Exception ex)
+            {
+                //_logger.Debug(ex);
+            }
+        }
 
-      /// <summary>
-      /// Clears the state.
-      /// </summary>
-      /// <typeparam name="TEntity">The type of the entity.</typeparam>
-      /// <param name="entity">The entity.</param>
-      public void ClearState<TEntity>(TEntity entity) where TEntity : class
-      {
-         //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
+        /// <summary>
+        /// Clears the state.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the entity.</typeparam>
+        /// <param name="entity">The entity.</param>
+        public void ClearState<TEntity>(TEntity entity) where TEntity : class
+        {
+            //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
 
-         try
-         {
-            Entry(entity).CurrentValues.SetValues(Entry(entity).OriginalValues);
-         }
-         catch (Exception ex)
-         {
-            //_logger.Debug(ex);
-         }
+            try
+            {
+                Entry(entity).CurrentValues.SetValues(Entry(entity).OriginalValues);
+            }
+            catch (Exception ex)
+            {
+                //_logger.Debug(ex);
+            }
 
-         try
-         {
-            Entry(entity).Reload();
-         }
-         catch (Exception ex)
-         {
-            //_logger.Debug(ex);
-         }
+            try
+            {
+                Entry(entity).Reload();
+            }
+            catch (Exception ex)
+            {
+                //_logger.Debug(ex);
+            }
 
-         try
-         {
-            Entry(entity).State = EntityState.Unchanged;
-         }
-         catch (Exception ex)
-         {
-            //_logger.Debug(ex);
-         }
-      }
+            try
+            {
+                Entry(entity).State = EntityState.Unchanged;
+            }
+            catch (Exception ex)
+            {
+                //_logger.Debug(ex);
+            }
+        }
 
-      /// <summary>
-      /// Sets the database context configuration automatic detect changes.
-      /// </summary>
-      /// <param name="setAutoDetect">if set to <c>true</c> [set automatic detect].</param>
-      public void SetDbContextConfigurationAutoDetectChanges(bool setAutoDetect)
-      {
-         //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
+        /// <summary>
+        /// Sets the database context configuration automatic detect changes.
+        /// </summary>
+        /// <param name="setAutoDetect">if set to <c>true</c> [set automatic detect].</param>
+        public void SetDbContextConfigurationAutoDetectChanges(bool setAutoDetect)
+        {
+            //_logger.DebugFormat("Method {0} called", MethodBase.GetCurrentMethod().Name);
 
-         ChangeTracker.AutoDetectChangesEnabled = setAutoDetect;
-      }
-      #endregion
+            ChangeTracker.AutoDetectChangesEnabled = setAutoDetect;
+        }
+        #endregion
 
-      #region Private Methods
-      private static DbContextOptions GetOptions(string connectionString)
-      {
-         // ReSharper disable once InvokeAsExtensionMethod
-         return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
-      }
-      #endregion
+        #region Private Methods
+        private static DbContextOptions GetOptions(string connectionString)
+        {
+            // ReSharper disable once InvokeAsExtensionMethod
+            return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+        }
+        #endregion
 
-   }
+    }
 }

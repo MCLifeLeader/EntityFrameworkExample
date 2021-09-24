@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MultiDatabase.DbTwoRepository.Model
 {
    [Table("DbTwoTableTwoLookup")]
-   public partial class DbTwoTableTwoLookup
+   public sealed class DbTwoTableTwoLookup
    {
       [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
       public DbTwoTableTwoLookup()
@@ -21,6 +21,7 @@ namespace MultiDatabase.DbTwoRepository.Model
       public string Description { get; set; }
 
       [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-      public virtual ICollection<DbTwoTableOne> DbOneTableOnes { get; set; }
+      // ReSharper disable once InconsistentNaming
+      public ICollection<DbTwoTableOne> DbOneTableOnes { get; set; }
    }
 }

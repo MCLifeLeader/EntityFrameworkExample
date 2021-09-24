@@ -9,40 +9,40 @@ using MultiDatabase.Repository.Interfaces;
 
 namespace MultiDatabase.DbOneRepository
 {
-   public class DbOneTableTwoLookupRepository : DbOneBaseRepository, IDbOneTableTwoLookupRepository
-   {
-      public DbOneTableTwoLookupRepository(IDbOneUnitOfWork unitOfWork) : base(unitOfWork)
-      {
-      }
+    public class DbOneTableTwoLookupRepository : DbOneBaseRepository, IDbOneTableTwoLookupRepository
+    {
+        public DbOneTableTwoLookupRepository(IDbOneUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+        }
 
-      public DbOneTableTwoLookup GetEntityById(short key)
-      {
-         throw new NotImplementedException();
-      }
+        public DbOneTableTwoLookup GetEntityById(short key)
+        {
+            throw new NotImplementedException();
+        }
 
-      public IList<DbOneTableTwoLookup> GetAll()
-      {
-         throw new NotImplementedException();
-      }
+        public IList<DbOneTableTwoLookup> GetAll()
+        {
+            throw new NotImplementedException();
+        }
 
-      public Task<IList<DbOneTableTwoLookup>> GetAllAsync()
-      {
-         throw new NotImplementedException();
-      }
+        public Task<IList<DbOneTableTwoLookup>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-      public IQueryable<DbOneTableTwoLookup> Query(Expression<Func<DbOneTableTwoLookup, bool>> filter)
-      {
-         throw new NotImplementedException();
-      }
+        public IQueryable<DbOneTableTwoLookup> Query(Expression<Func<DbOneTableTwoLookup, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
 
-      IQueryable<DbOneTableTwoLookup> Interfaces.IDbOneTableTwoLookupRepository.GetAsQueryable()
-      {
-         throw new NotImplementedException();
-      }
+        IQueryable<DbOneTableTwoLookup> Interfaces.IDbOneTableTwoLookupRepository.GetAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
 
-      IQueryable<DbOneTableTwoLookup> ILookupRepository<DbOneTableTwoLookup, short>.GetAsQueryable()
-      {
-         throw new NotImplementedException();
-      }
-   }
+        IQueryable<DbOneTableTwoLookup> ILookupRepository<DbOneTableTwoLookup, short>.GetAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

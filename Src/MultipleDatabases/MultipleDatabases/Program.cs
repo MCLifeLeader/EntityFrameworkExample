@@ -21,6 +21,8 @@ namespace MultipleDatabases
                 Console.WriteLine("2. Read Records from Second Database");
                 Console.WriteLine("3. Write Record to First Database");
                 Console.WriteLine("4. Write Record to Second Database");
+                Console.WriteLine("5. Read Records from First Database Lookup Table");
+                Console.WriteLine("5. Read Records from Second Database Lookup Table");
                 Console.WriteLine("Q. Quit");
                 Console.Write("Enter Option: ");
                 menuInput = Console.ReadLine();
@@ -47,6 +49,16 @@ namespace MultipleDatabases
                         Console.Write("Enter Some Text into the DB: ");
                         dbInput = Console.ReadLine();
                         businessLogic.WriteDbTwo(dbInput);
+                        break;
+                    case "5":
+                        PrintStarBreak("\n");
+                        businessLogic.ReadDbOneLookups();
+                        PrintStarBreak();
+                        break;
+                    case "6":
+                        PrintStarBreak("\n");
+                        businessLogic.ReadDbTwoLookups();
+                        PrintStarBreak();
                         break;
                 }
 

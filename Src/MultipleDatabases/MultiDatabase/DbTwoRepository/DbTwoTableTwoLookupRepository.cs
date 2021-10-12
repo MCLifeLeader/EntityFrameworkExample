@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MultiDatabase.DbTwoRepository.Interfaces;
 using MultiDatabase.DbTwoRepository.Model;
 using MultiDatabase.Repository.Interfaces;
@@ -17,32 +18,37 @@ namespace MultiDatabase.DbTwoRepository
 
         public DbTwoTableTwoLookup GetEntityById(short key)
         {
-            throw new NotImplementedException();
+            return _context.TwoTableTwoLookup.SingleOrDefault(e => e.Id == key);
+        }
+
+        public async Task<DbTwoTableTwoLookup> GetEntityByIdAsync(short key)
+        {
+            return await _context.TwoTableTwoLookup.SingleOrDefaultAsync(e => e.Id == key);
         }
 
         public IList<DbTwoTableTwoLookup> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.TwoTableTwoLookup.ToList();
         }
 
-        public Task<IList<DbTwoTableTwoLookup>> GetAllAsync()
+        public async Task<IList<DbTwoTableTwoLookup>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.TwoTableTwoLookup.ToListAsync();
         }
 
         public IQueryable<DbTwoTableTwoLookup> Query(Expression<Func<DbTwoTableTwoLookup, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _context.TwoTableTwoLookup.Where(filter);
         }
 
-        IQueryable<DbTwoTableTwoLookup> Interfaces.IDbTwoTableTwoLookupRepository.GetAsQueryable()
+        IQueryable<DbTwoTableTwoLookup> IDbTwoTableTwoLookupRepository.GetAsQueryable()
         {
-            throw new NotImplementedException();
+            return _context.TwoTableTwoLookup.AsQueryable();
         }
 
         IQueryable<DbTwoTableTwoLookup> ILookupRepository<DbTwoTableTwoLookup, short>.GetAsQueryable()
         {
-            throw new NotImplementedException();
+            return _context.TwoTableTwoLookup.AsQueryable();
         }
     }
 }

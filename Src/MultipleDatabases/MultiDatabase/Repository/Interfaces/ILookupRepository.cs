@@ -22,6 +22,13 @@ namespace MultiDatabase.Repository.Interfaces
         TEntityType GetEntityById(TKeyType key);
 
         /// <summary>
+        ///     Reads the specified record by the <paramref name="key" />.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>The <typeparamref name="TEntityType" /> Record.</returns>
+        Task<TEntityType> GetEntityByIdAsync(TKeyType key);
+
+        /// <summary>
         ///     Gets all records.
         /// </summary>
         /// <returns>A collection of all <typeparamref name="TEntityType" /> records.</returns>

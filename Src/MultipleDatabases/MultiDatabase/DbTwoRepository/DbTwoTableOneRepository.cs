@@ -18,7 +18,12 @@ namespace MultiDatabase.DbTwoRepository
 
         public DbTwoTableOne GetEntityById(int key)
         {
-            return _context.TwoTableOne.FirstOrDefault(e => e.Id == key);
+            return _context.TwoTableOne.SingleOrDefault(e => e.Id == key);
+        }
+
+        public async Task<DbTwoTableOne> GetEntityByIdAsync(int key)
+        {
+            return await _context.TwoTableOne.SingleOrDefaultAsync(e => e.Id == key);
         }
 
         public IList<DbTwoTableOne> GetAll()
@@ -53,12 +58,26 @@ namespace MultiDatabase.DbTwoRepository
 
         public IList<DbTwoTableOne> GetEntityByDateRange(DateTime startDate, DateTime endDate)
         {
-            return _context.TwoTableOne.Where(e => e.DateCreated >= startDate && e.DateCreated <= endDate).ToList();
+            // LINQ to SQL example
+            IQueryable<DbTwoTableOne> query =
+                from table in _context.TwoTableOne
+                where table.DateCreated >= startDate && table.DateCreated <= endDate
+                orderby table.DateCreated descending
+                select table;
+
+            return query.ToList();
         }
 
         public async Task<IList<DbTwoTableOne>> GetEntityByDateRangeAsync(DateTime startDate, DateTime endDate)
         {
-            return await _context.TwoTableOne.Where(e => e.DateCreated >= startDate && e.DateCreated <= endDate).ToListAsync();
+            // LINQ to SQL example
+            IQueryable<DbTwoTableOne> query =
+                from table in _context.TwoTableOne
+                where table.DateCreated >= startDate && table.DateCreated <= endDate
+                orderby table.DateCreated descending
+                select table;
+
+            return await query.ToListAsync();
         }
 
         IQueryable<DbTwoTableOne> ILookupRepository<DbTwoTableOne, int>.GetAsQueryable()

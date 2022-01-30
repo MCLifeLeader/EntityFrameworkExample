@@ -95,6 +95,16 @@ namespace MultiDatabase.DbOneRepository
             await _context.AddAsync(entity);
         }
 
+        public void AddRange(IEnumerable<DbOneTableOne> entities)
+        {
+            _context.AddRange(entities);
+        }
+
+        public async Task AddRangeAsync(IEnumerable<DbOneTableOne> entities)
+        {
+            await _context.AddRangeAsync(entities);
+        }
+
         public void Delete(DbOneTableOne entity)
         {
             _context.Remove(entity);

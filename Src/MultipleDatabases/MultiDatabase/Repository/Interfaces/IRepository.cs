@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MultiDatabase.Repository.Interfaces
 {
@@ -21,6 +22,19 @@ namespace MultiDatabase.Repository.Interfaces
         /// </summary>
         /// <param name="entity">The entity.</param>
         Task AddAsync(TEntityType entity);
+
+        /// <summary>
+        /// Creates a series of entities
+        /// </summary>
+        /// <param name="entities"></param>
+        void AddRange(IEnumerable<TEntityType> entities);
+
+        /// <summary>
+        /// Creates a series of entities
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        Task AddRangeAsync(IEnumerable<TEntityType> entities);
 
         /// <summary>
         ///     Deletes the specified key.

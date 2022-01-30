@@ -95,6 +95,16 @@ namespace MultiDatabase.DbTwoRepository
             await _context.AddAsync(entity);
         }
 
+        public void AddRange(IEnumerable<DbTwoTableOne> entities)
+        {
+            _context.AddRange(entities);
+        }
+
+        public async Task AddRangeAsync(IEnumerable<DbTwoTableOne> entities)
+        {
+            await _context.AddRangeAsync(entities);
+        }
+
         public void Delete(DbTwoTableOne entity)
         {
             _context.Remove(entity);
